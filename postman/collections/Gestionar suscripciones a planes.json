@@ -1,0 +1,282 @@
+{
+	"info": {
+		"_postman_id": "f5c8d22e-07d2-431d-9524-f5c0f42e0952",
+		"name": "Gestionar suscripciones a planes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "14453219-f5c8d22e-07d2-431d-9524-f5c0f42e0952"
+	},
+	"item": [
+		{
+			"name": "Autenticarse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f43662d3-06ef-4f22-b409-156354ff2f66",
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"token\", data.accessToken);",
+							"",
+							"pm.test(\"El código de estado es 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "8b4991ee-b62b-4075-80e6-b58c709e85bb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"jp.feliciano10@uniandes.edu.co\",\r\n    \"password\" : \"p455w0rd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-autenticador}}/autenticador/auth",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-autenticador}}",
+					"path": [
+						"autenticador",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Healthcheck",
+			"id": "ed91f936-0ba9-4b05-b452-02af600c27bf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-gestion-planes}}/gestion-planes/health/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-gestion-planes}}",
+					"path": [
+						"gestion-planes",
+						"health",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suscribirse a plan",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a2d275eb-714a-45ec-be5e-b30aaf2fa4e0",
+						"exec": [
+							"var moment = require('moment');",
+							"pm.environment.set('birthdate', moment().format((\"YYYY-MM-DD\")));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "842943a2-e2cb-4317-859d-a2380ff44369",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idTipoSuscripcion\": 1,\n    \"idNivel\": 1,\n    \"complementos\": [],\n    \"idMedioPago\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-gestion-planes}}/gestion-planes/9",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-gestion-planes}}",
+					"path": [
+						"gestion-planes",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar suscripción a plan",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e754efa9-2f05-44c1-916f-cb51a63907d0",
+						"exec": [
+							"var moment = require('moment');",
+							"var birthdate = moment(\"1981-01-17\");",
+							"pm.environment.set('birthdate', birthdate.format(\"YYYY-MM-DD\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "72f108fb-983f-4b22-847a-9044a81aa6f6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"idTipoSuscripcion\": 1,\n    \"idNivel\": 1,\n    \"complementos\": [1],\n    \"idMedioPago\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-gestion-planes}}/gestion-planes/9",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-gestion-planes}}",
+					"path": [
+						"gestion-planes",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener suscripción a plan",
+			"id": "ac15000d-c077-4f87-b95b-e39c80ac11b8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-gestion-planes}}/gestion-planes/9",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-gestion-planes}}",
+					"path": [
+						"gestion-planes",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar suscripción a plan",
+			"id": "6a1d297b-923a-4803-b588-3b63cecdebb6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-gestion-planes}}/gestion-planes/9",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-gestion-planes}}",
+					"path": [
+						"gestion-planes",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9f6f7d9b-16d2-4571-9e39-675865caafb5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "51f5926a-54aa-42d3-87da-9302fe0ab319",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "9c11229f-a0f9-4ff3-8353-a86d6d03c8e2",
+		"name": "Perfil Alimenticio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "14453219-9c11229f-a0f9-4ff3-8353-a86d6d03c8e2"
+	},
+	"item": [
+		{
+			"name": "Autenticarse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f43662d3-06ef-4f22-b409-156354ff2f66",
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"token\", data.accessToken);",
+							"",
+							"pm.test(\"El código de estado es 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "a84e8048-9074-4b40-bc99-c5274390f15a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"jp.feliciano10@uniandes.edu.co\",\r\n    \"password\" : \"p455w0rd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-autenticador}}/autenticador/auth",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-autenticador}}",
+					"path": [
+						"autenticador",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Healthcheck",
+			"id": "f4d2de13-d422-49b8-939f-cecd299492be",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-perfil-alimenticio}}/perfil-alimenticio/health/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-alimenticio}}",
+					"path": [
+						"perfil-alimenticio",
+						"health",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear perfil alimenticio",
+			"id": "e0c8de8a-b294-4299-8dfb-c1ba807588c7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tipoDieta\": 3,\n    \"alimentosNoTolereados\": [6],\n    \"alimentosPreferencia\": [1,3,4,5]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-perfil-alimenticio}}/perfil-alimenticio/10",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-alimenticio}}",
+					"path": [
+						"perfil-alimenticio",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar perfil alimenticio",
+			"id": "31344415-994d-40a3-924e-c369f9d0cc10",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"tipoDieta\": 2,\n    \"alimentosNoTolereados\": [2,3],\n    \"alimentosPreferencia\": [4,5]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-perfil-alimenticio}}/perfil-alimenticio/10",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-alimenticio}}",
+					"path": [
+						"perfil-alimenticio",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener perfil alimenticio",
+			"id": "e62c9b6a-3902-40ca-8abb-d4b9a6e01ba0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-perfil-alimenticio}}/perfil-alimenticio/10",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-alimenticio}}",
+					"path": [
+						"perfil-alimenticio",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar perfil alimenticio",
+			"id": "837f73f6-a876-47a2-b1f9-ae5a9c7c1218",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-perfil-alimenticio}}/perfil-alimenticio/10",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-alimenticio}}",
+					"path": [
+						"perfil-alimenticio",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9f6f7d9b-16d2-4571-9e39-675865caafb5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "51f5926a-54aa-42d3-87da-9302fe0ab319",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

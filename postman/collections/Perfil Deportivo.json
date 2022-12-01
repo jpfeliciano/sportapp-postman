@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "38dee263-3ca3-4a96-a809-31ac27119891",
+		"name": "Perfil Deportivo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "14453219-38dee263-3ca3-4a96-a809-31ac27119891"
+	},
+	"item": [
+		{
+			"name": "Autenticarse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f43662d3-06ef-4f22-b409-156354ff2f66",
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"token\", data.accessToken);",
+							"",
+							"pm.test(\"El código de estado es 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "1a2cab1b-5bb1-45d7-bf7d-d003fcb3c207",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"juanp.feliciano@gmail.com\",\r\n    \"password\" : \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-autenticador}}/autenticador/auth",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-autenticador}}",
+					"path": [
+						"autenticador",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Healthcheck",
+			"id": "75c785e7-3b65-4287-814a-e6ec8f64dd44",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-perfil-deportivo}}/perfil-deportivo/health/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-deportivo}}",
+					"path": [
+						"perfil-deportivo",
+						"health",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear perfil deportivo",
+			"id": "c73d0ccb-d65a-4ee8-b123-3141ba730253",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vo2Max\": \"97.5\",\n    \"ftpActual\": 85,\n    \"molestias\": [1],\n    \"lesiones\": [2,4],\n    \"historiasDeportivas\": [\n        {\n            \"idDeporte\": \"1\",\n            \"edadInicioPractica\": 9,\n            \"practicadoActualmente\": false,\n            \"aniosPractica\": 9,\n            \"dedicacionHorasSemana\": 4,\n            \"ciudad\": \"Bogotá\"\n        },\n        {\n            \"idDeporte\": \"2\",\n            \"edadInicioPractica\": 17,\n            \"practicadoActualmente\": true,\n            \"aniosPractica\": 2,\n            \"dedicacionHorasSemana\": 3,\n            \"ciudad\": \"Chía\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-perfil-deportivo}}/perfil-deportivo/1",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-deportivo}}",
+					"path": [
+						"perfil-deportivo",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "5f56b645-baa6-47e9-9bab-40e54ce2bfd1",
+					"name": "Crear perfil deportivo",
+					"originalRequest": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vo2Max\": \"97.5\",\n    \"ftpActual\": 85,\n    \"molestias\": [1],\n    \"lesiones\": [2,4],\n    \"historiasDeportivas\": [\n        {\n            \"idDeporte\": \"1\",\n            \"edadInicioPractica\": 9,\n            \"practicadoActualmente\": false,\n            \"aniosPractica\": 9,\n            \"dedicacionHorasSemana\": 4,\n            \"ciudad\": \"Bogotá\"\n        },\n        {\n            \"idDeporte\": \"2\",\n            \"edadInicioPractica\": 17,\n            \"practicadoActualmente\": true,\n            \"aniosPractica\": 2,\n            \"dedicacionHorasSemana\": 3,\n            \"ciudad\": \"Chía\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port-perfil-deportivo}}/perfil-deportivo/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port-perfil-deportivo}}",
+							"path": [
+								"perfil-deportivo",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"vo2Max\": \"97.5\",\n    \"ftpActual\": 85,\n    \"molestias\": [\n        1\n    ],\n    \"lesiones\": [\n        2,\n        4\n    ],\n    \"historiasDeportivas\": [\n        {\n            \"idDeporte\": \"1\",\n            \"edadInicioPractica\": 9,\n            \"practicadoActualmente\": false,\n            \"aniosPractica\": 9,\n            \"dedicacionHorasSemana\": 4,\n            \"ciudad\": \"Bogotá\",\n            \"id\": 3\n        },\n        {\n            \"idDeporte\": \"2\",\n            \"edadInicioPractica\": 17,\n            \"practicadoActualmente\": true,\n            \"aniosPractica\": 2,\n            \"dedicacionHorasSemana\": 3,\n            \"ciudad\": \"Chía\",\n            \"id\": 4\n        }\n    ],\n    \"idDeportista\": \"1\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar perfil deportivo",
+			"id": "2ef34e73-bc07-46c9-aee6-4c0636100dae",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"vo2Max\": \"97.5\",\n    \"ftpActual\": 87,\n    \"molestias\": [2,3],\n    \"lesiones\": [2,4,5],\n    \"historiasDeportivas\": [\n        {\n            \"idDeporte\": \"1\",\n            \"edadInicioPractica\": 9,\n            \"practicadoActualmente\": false,\n            \"aniosPractica\": 9,\n            \"dedicacionHorasSemana\": 4,\n            \"ciudad\": \"Bogotá\"\n        },\n        {\n            \"idDeporte\": \"2\",\n            \"edadInicioPractica\": 17,\n            \"practicadoActualmente\": true,\n            \"aniosPractica\": 2,\n            \"dedicacionHorasSemana\": 3,\n            \"ciudad\": \"Bogotá\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-perfil-deportivo}}/perfil-deportivo/1",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-deportivo}}",
+					"path": [
+						"perfil-deportivo",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "d09c876c-f60f-4b2a-a8c9-169c657be01b",
+					"name": "Crear perfil deportivo",
+					"originalRequest": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"vo2Max\": \"97.5\",\n    \"ftpActual\": 87,\n    \"molestias\": [2,3],\n    \"lesiones\": [2,4,5],\n    \"historiasDeportivas\": [\n        {\n            \"idDeporte\": \"1\",\n            \"edadInicioPractica\": 9,\n            \"practicadoActualmente\": false,\n            \"aniosPractica\": 9,\n            \"dedicacionHorasSemana\": 4,\n            \"ciudad\": \"Bogotá\"\n        },\n        {\n            \"idDeporte\": \"2\",\n            \"edadInicioPractica\": 17,\n            \"practicadoActualmente\": true,\n            \"aniosPractica\": 2,\n            \"dedicacionHorasSemana\": 3,\n            \"ciudad\": \"Bogotá\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port-perfil-deportivo}}/perfil-deportivo/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port-perfil-deportivo}}",
+							"path": [
+								"perfil-deportivo",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"vo2Max\": \"97.5\",\n    \"ftpActual\": 85,\n    \"molestias\": [\n        1\n    ],\n    \"lesiones\": [\n        2,\n        4\n    ],\n    \"historiasDeportivas\": [\n        {\n            \"idDeporte\": \"1\",\n            \"edadInicioPractica\": 9,\n            \"practicadoActualmente\": false,\n            \"aniosPractica\": 9,\n            \"dedicacionHorasSemana\": 4,\n            \"ciudad\": \"Bogotá\",\n            \"id\": 3\n        },\n        {\n            \"idDeporte\": \"2\",\n            \"edadInicioPractica\": 17,\n            \"practicadoActualmente\": true,\n            \"aniosPractica\": 2,\n            \"dedicacionHorasSemana\": 3,\n            \"ciudad\": \"Chía\",\n            \"id\": 4\n        }\n    ],\n    \"idDeportista\": \"1\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener perfil deportivo",
+			"id": "d6153213-7af5-4e96-982f-64ab5afb376f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-perfil-deportivo}}/perfil-deportivo/1",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-deportivo}}",
+					"path": [
+						"perfil-deportivo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar perfil deportivo",
+			"id": "9268f12e-9dcc-4835-b35e-abf4e5ac6531",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-perfil-deportivo}}/perfil-deportivo/1",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-deportivo}}",
+					"path": [
+						"perfil-deportivo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9f6f7d9b-16d2-4571-9e39-675865caafb5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "51f5926a-54aa-42d3-87da-9302fe0ab319",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

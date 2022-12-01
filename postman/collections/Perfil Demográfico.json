@@ -1,0 +1,282 @@
+{
+	"info": {
+		"_postman_id": "61729561-e224-4889-b56e-daddd7dffcc2",
+		"name": "Perfil Demográfico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "14453219-61729561-e224-4889-b56e-daddd7dffcc2"
+	},
+	"item": [
+		{
+			"name": "Autenticarse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f43662d3-06ef-4f22-b409-156354ff2f66",
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"token\", data.accessToken);",
+							"",
+							"pm.test(\"El código de estado es 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "88c569c9-2b55-4885-bf27-b01dcbb25309",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"jp.feliciano10@uniandes.edu.co\",\r\n    \"password\" : \"p455w0rd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-autenticador}}/autenticador/auth",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-autenticador}}",
+					"path": [
+						"autenticador",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Healthcheck",
+			"id": "443450fa-78e1-4ebd-94be-467b94a3dc7c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-perfil-demografico}}/perfil-demografico/health/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-demografico}}",
+					"path": [
+						"perfil-demografico",
+						"health",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear perfil demográfico",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a2d275eb-714a-45ec-be5e-b30aaf2fa4e0",
+						"exec": [
+							"var moment = require('moment');",
+							"pm.environment.set('birthdate', moment().format((\"YYYY-MM-DD\")));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "5560d829-c17c-4bd7-aa3c-82b0c1bd7201",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombres\": \"Juan\",\n    \"apellidos\": \"Feliciano\",\n    \"paisNacimiento\": \"CO\",\n    \"ciudadNacimiento\": \"Bogotá\",\n    \"tipoIdentificacion\": 1,\n    \"numeroIdentificacion\": 81011706622,\n    \"genero\": \"M\",\n    \"fechaNacimiento\": \"{{birthdate}}\",\n    \"peso\": 65,\n    \"estatura\": 170,\n    \"paisResidencia\": \"CO\",\n    \"ciudadResidencia\": \"Chía\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-perfil-demografico}}/perfil-demografico/9",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-demografico}}",
+					"path": [
+						"perfil-demografico",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar perfil demográfico",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e754efa9-2f05-44c1-916f-cb51a63907d0",
+						"exec": [
+							"var moment = require('moment');",
+							"var birthdate = moment(\"1981-01-17\");",
+							"pm.environment.set('birthdate', birthdate.format(\"YYYY-MM-DD\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "2100929d-303a-4f06-a6a6-5f95011088e5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"nombres\": \"Juan\",\n    \"apellidos\": \"Feliciano\",\n    \"paisNacimiento\": \"CO\",\n    \"ciudadNacimiento\": \"Bogotá\",\n    \"tipoIdentificacion\": 2,\n    \"numeroIdentificacion\": 80123456,\n    \"genero\": \"M\",\n    \"fechaNacimiento\": \"{{birthdate}}\",\n    \"peso\": 66,\n    \"estatura\": 170,\n    \"paisResidencia\": \"CO\",\n    \"ciudadResidencia\": \"Chía\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-perfil-demografico}}/perfil-demografico/9",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-demografico}}",
+					"path": [
+						"perfil-demografico",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener perfil demográfico",
+			"id": "4f0f8ccf-9a40-4231-b4e9-9273cb0b68d3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-perfil-demografico}}/perfil-demografico/9",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-demografico}}",
+					"path": [
+						"perfil-demografico",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar perfil demográfico",
+			"id": "19b2f7a7-6adc-457b-a44c-ca5eb9eed62d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-perfil-demografico}}/perfil-demografico/9",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-perfil-demografico}}",
+					"path": [
+						"perfil-demografico",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9f6f7d9b-16d2-4571-9e39-675865caafb5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "51f5926a-54aa-42d3-87da-9302fe0ab319",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

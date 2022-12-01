@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "b13d55dc-10cb-4b54-b037-4ca0d8c64159",
+		"name": "Usuarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "14453219-b13d55dc-10cb-4b54-b037-4ca0d8c64159"
+	},
+	"item": [
+		{
+			"name": "Health",
+			"id": "4a48cfaa-5e6b-471a-bf94-e5924a960d17",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-usuario}}/usuario/health",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-usuario}}",
+					"path": [
+						"usuario",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear usuario",
+			"id": "276039b7-f013-46ef-9130-95de72c608b1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombres\": \"Juan\",\n    \"apellidos\": \"Feliciano\",\n    \"password\": \"p455w0rd\",\n    \"email\": \"jp.feliciano10@uniandes.edu.co\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-usuario}}/usuario/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-usuario}}",
+					"path": [
+						"usuario",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Autenticarse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f43662d3-06ef-4f22-b409-156354ff2f66",
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"token\", data.accessToken);",
+							"",
+							"pm.test(\"El código de estado es 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "b58297a0-f052-441d-96b8-5d87502b30a0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"jp.feliciano10@uniandes.edu.co\",\r\n    \"password\" : \"p455w0rd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-autenticador}}/autenticador/auth",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-autenticador}}",
+					"path": [
+						"autenticador",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

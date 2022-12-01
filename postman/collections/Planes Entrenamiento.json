@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "cd65d4b3-0bde-46f5-b436-33ebbc03903f",
+		"name": "Planes Entrenamiento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "14453219-cd65d4b3-0bde-46f5-b436-33ebbc03903f"
+	},
+	"item": [
+		{
+			"name": "Healthcheck",
+			"id": "6b8f7c0c-f44a-4ed3-a97c-ca67e0c2d7c6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-planes-entrenamiento}}/planes-entrenamiento/health/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-planes-entrenamiento}}",
+					"path": [
+						"planes-entrenamiento",
+						"health",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Autenticarse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f43662d3-06ef-4f22-b409-156354ff2f66",
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"token\", data.accessToken);",
+							"",
+							"pm.test(\"El código de estado es 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "079311c9-e009-4b23-a65f-24298f452e12",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"jp.feliciano10@uniandes.edu.co\",\r\n    \"password\" : \"p455w0rd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-autenticador}}/autenticador/auth",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-autenticador}}",
+					"path": [
+						"autenticador",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear plan de entrenamiento",
+			"id": "012ec305-4503-4472-a40e-5a2d752766ab",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"imagen\": \"https://www.marathonranking.com/wp-content/uploads/2017/03/750X400GGDFSDS.jpg\",\n    \"suscripcion\": 1,\n    \"nombre\": \"PLAN DE ENTRENAMIENTO PARA CORRER 5K EN MENOS DE 30 MINUTOS\",\n    \"descripcion\": \"Sin duda que correr una carrera de 5k puede ser algo inolvidable si tienes ganas sobre todo de entrenar para prepararte con un plan de entrenamiento para correr 5k.\\nEs una distancia ideal para partir corriendo tus primeras carreras, pero a la vez tiene la gracia de ser ideal para corredores que llevan años corriendo carreras de fondo de entrenar su velocidad.\",\n    \"duracion\": \"8 semanas\",\n    \"nivelPlan\": 1,\n    \"rutinas\": [\n        {            \n            \"dia\": 1,\n            \"ejercicio\": \"1K caminata + 2K trote o caminata + 15 min. est.\"\n        },\n        {            \n            \"dia\": 2,\n            \"ejercicio\": \"4K trote o caminata + ejer. fuer. + 15 min. est.\"\n        },\n        {            \n            \"dia\": 3,\n            \"ejercicio\": \"60 min. caminata\"\n        },\n        {            \n            \"dia\": 4,\n            \"ejercicio\": \"1K caminata + 3K trote o caminata + 15 min. est.\"\n        },\n        {            \n            \"dia\": 5,\n            \"ejercicio\": \"4K trote o caminata + ejer. fuer. + 15 min. est.\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-planes-entrenamiento}}/planes-entrenamiento/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-planes-entrenamiento}}",
+					"path": [
+						"planes-entrenamiento",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar plan de entrenamiento",
+			"id": "10fb5f30-3ea6-4254-aae4-1722eed10269",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"imagen\": \"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.reebok.com%2Fus%2Fblog%2F404660-how-to-make-a-workout-plan&psig=AOvVaw199am6FY0n0z69Og_Joh2c&ust=1667798682367000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCLjhyLbomPsCFQAAAAAdAAAAABAI\",\n    \"suscripcion\": 1,\n    \"nombre\": \"Entrenamiento de fortalecimiento\",\n    \"descripcion\": \"Plan de entrenamiento para fortalecer todo el cuerpo de forma sencilla\",\n    \"duracion\": \"1 semana y media\",\n    \"nivelPlan\": 1,\n    \"rutinas\": [\n        {            \n            \"dia\": 1,\n            \"ejercicio\": \"Cardio\"\n        },\n        {            \n            \"dia\": 2,\n            \"ejercicio\": \"Pesas - tren superior\"\n        },\n        {            \n            \"dia\": 3,\n            \"ejercicio\": \"Pesas - tren inferior\"\n        },\n        {            \n            \"dia\": 4,\n            \"ejercicio\": \"Barras paralelas\"\n        },\n        {            \n            \"dia\": 5,\n            \"ejercicio\": \"Cardio\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-planes-entrenamiento}}/planes-entrenamiento/{{plan-entrenamiento-id}}",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-planes-entrenamiento}}",
+					"path": [
+						"planes-entrenamiento",
+						"{{plan-entrenamiento-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar plan de entrenamiento a deportista",
+			"id": "a9778347-386e-45eb-a38e-50721fe1af84",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-planes-entrenamiento}}/planes-entrenamiento/{{plan-entrenamiento-id}}/deportistas/{{deportista-id}}",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-planes-entrenamiento}}",
+					"path": [
+						"planes-entrenamiento",
+						"{{plan-entrenamiento-id}}",
+						"deportistas",
+						"{{deportista-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar plan de entrenamiento registrado por deportista",
+			"id": "b9b9b807-53a1-4bbb-b4f7-1a9111dc2289",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-planes-entrenamiento}}/planes-entrenamiento/{{plan-entrenamiento-id-2}}/deportistas/{{deportista-id}}",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-planes-entrenamiento}}",
+					"path": [
+						"planes-entrenamiento",
+						"{{plan-entrenamiento-id-2}}",
+						"deportistas",
+						"{{deportista-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar plan de entrenamiento",
+			"id": "4c73a29b-e881-4946-af78-6817412a9396",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-planes-entrenamiento}}/planes-entrenamiento/{{plan-entrenamiento-id-2}}",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-planes-entrenamiento}}",
+					"path": [
+						"planes-entrenamiento",
+						"{{plan-entrenamiento-id-2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los planes de entrenamiento",
+			"id": "355f4b18-4a92-4b0e-9a98-34714c312c3c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-planes-entrenamiento}}/planes-entrenamiento/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-planes-entrenamiento}}",
+					"path": [
+						"planes-entrenamiento",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener planes de entrenamiento sugeridos para un deportista",
+			"id": "447a69d7-f90a-432a-8ae4-d4d722c8e1ce",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-planes-entrenamiento}}/planes-entrenamiento/deportista/{{deportista-id}}/sugeridos",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-planes-entrenamiento}}",
+					"path": [
+						"planes-entrenamiento",
+						"deportista",
+						"{{deportista-id}}",
+						"sugeridos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener planes de entrenamiento registrados por un deportista",
+			"id": "47a3a53f-6acb-4c27-bff7-bf51e7d1a58d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-planes-entrenamiento}}/planes-entrenamiento/deportista/{{deportista-id}}/registrados",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-planes-entrenamiento}}",
+					"path": [
+						"planes-entrenamiento",
+						"deportista",
+						"{{deportista-id}}",
+						"registrados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener plan de entrenamiento detallado",
+			"id": "e7e2b0dd-9e25-4ad2-8ed7-8ace2b7d54cb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-planes-entrenamiento}}/planes-entrenamiento/{{plan-entrenamiento-id}}",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-planes-entrenamiento}}",
+					"path": [
+						"planes-entrenamiento",
+						"{{plan-entrenamiento-id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "718a9e27-ec5f-4316-9d82-78c601ef79ba",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e9b9428d-87b5-4334-b4d8-ca228935aaeb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "8bdb5ecc-c5fa-47ee-8d15-8ae222d05977",
+			"key": "plan-entrenamiento-id",
+			"value": "b65e6e45-7483-4331-97e0-3c48945dcf38"
+		},
+		{
+			"id": "1afcb8e7-a24b-4682-966e-da077cb9e46d",
+			"key": "deportista-id",
+			"value": "20"
+		},
+		{
+			"id": "23b5fbe4-66ad-4581-9afa-cbcbb3ab65a9",
+			"key": "plan-entrenamiento-id-2",
+			"value": "db98ab46-af5f-45ce-a0a3-b3f092f38314"
+		}
+	]
+}

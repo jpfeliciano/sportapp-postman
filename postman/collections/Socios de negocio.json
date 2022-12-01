@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "da784312-bdcb-4a2f-92e9-5829bb1e8c10",
+		"name": "Socios de negocio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "14453219-da784312-bdcb-4a2f-92e9-5829bb1e8c10"
+	},
+	"item": [
+		{
+			"name": "Health",
+			"id": "45662ee6-9144-4308-b12f-35b60bb1c773",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-usuario}}/socios-negocio/health",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-usuario}}",
+					"path": [
+						"socios-negocio",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear socio de negocio",
+			"id": "baf45fac-d314-4f47-ae7e-d58759469adf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"razonSocial\": \"Go Rigo Go!\",\n    \"categoriaSocio\": 2,\n    \"password\": \"p455w0rd\",\n    \"email\": \"jpfb_1@hotmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-usuario}}/socios-negocio/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-usuario}}",
+					"path": [
+						"socios-negocio",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Autenticarse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f43662d3-06ef-4f22-b409-156354ff2f66",
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"token\", data.accessToken);",
+							"",
+							"pm.test(\"El código de estado es 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "d12fec21-948a-49d3-8ce1-1672f6aea10b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"jpfb_1@hotmail.com\",\r\n    \"password\" : \"p455w0rd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-autenticador}}/autenticador/auth",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-autenticador}}",
+					"path": [
+						"autenticador",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener socio de negocio",
+			"id": "ff7a38c5-b55e-4f7e-b4e8-1778d06cc0d3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-usuario}}/socios-negocio/33",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-usuario}}",
+					"path": [
+						"socios-negocio",
+						"33"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

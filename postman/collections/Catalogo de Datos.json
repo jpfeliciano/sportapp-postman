@@ -1,0 +1,615 @@
+{
+	"info": {
+		"_postman_id": "fc699211-31f2-411c-a62f-cf863de427bf",
+		"name": "Catalogo de Datos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "14453219-fc699211-31f2-411c-a62f-cf863de427bf"
+	},
+	"item": [
+		{
+			"name": "Obtener molestias deportivas",
+			"id": "9d2dad6f-9184-4fdf-a785-ee82235b3044",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/molestias/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"molestias",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener lesiones deportivas",
+			"id": "c5b48a14-ac28-47e5-94d1-ae913a6a452d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/lesiones/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"lesiones",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener deportes",
+			"id": "e8c031c1-58bf-4a01-afc2-b3dd3ff45247",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/deportes/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"deportes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener suscripciones",
+			"id": "dcf603ea-9031-4e46-b04e-d21f30406866",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/suscripciones/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"suscripciones",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener niveles plan",
+			"id": "6ca5d92a-9158-4124-932d-28231250f81a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/niveles-plan/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"niveles-plan",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener alimentos",
+			"id": "88d46a58-8d5e-4d5a-8bb0-a1d29ba4ddcf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/alimentos/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"alimentos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener tipos de dieta",
+			"id": "653255ab-bfb0-487f-b462-8ef4ca136a22",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/tipos-dietas/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"tipos-dietas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener tipos de documentos",
+			"id": "9cc6a6e5-3b38-4089-92a7-6ae33978ba8f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/tipos-documentos/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"tipos-documentos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener categorías de socio",
+			"id": "fa2f8369-7f5c-4eeb-8487-bd54ff9985c7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/categorias-socio/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"categorias-socio",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener complementos plan",
+			"id": "6e3b5608-acf1-4f07-b767-75adaf0385c8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/complementos-plan/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"complementos-plan",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener medios de pago",
+			"id": "60924bd6-0f4d-4dc5-af8e-b0ff466aa2f0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/medios-pago/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"medios-pago",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear molestia deportiva",
+			"id": "96253589-f5e3-44b3-9860-c83b4c19beea",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descripcion\": \"Dolor en las muñecas\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/molestias/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"molestias",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear lesión",
+			"id": "8cc6bec7-2f9c-443a-9e66-d2965bdcbd45",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descripcion\": \"Bursitis\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/lesiones/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"lesiones",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear deporte",
+			"id": "65c77bf0-1fde-4c8b-af72-7cba7b613553",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descripcion\": \"Atletismo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/deportes/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"deportes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear suscripción",
+			"id": "93ef5608-91ab-4175-855d-9f4d7da551c0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descripcion\": \"Plan Premium\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/suscripciones/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"suscripciones",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear nivel plan",
+			"id": "7472b55b-4191-41ed-9115-66668bf8820a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descripcion\": \"Avanzado\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/niveles-plan/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"niveles-plan",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear alimento",
+			"id": "975a6dcc-8709-4ff0-833c-141252b79e06",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descripcion\": \"Leche\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/alimentos/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"alimentos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear tipo de dieta",
+			"id": "ffb1dfe3-762a-47e4-98fb-ffb0a4ef5226",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descripcion\": \"Vegano\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/tipos-dietas/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"tipos-dietas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear tipo de documento",
+			"id": "62f10f76-7529-49a0-99ff-62a7bff11e06",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descripcion\": \"Pasaporte\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/tipos-documentos/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"tipos-documentos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear categoria de socio",
+			"id": "4aec0787-032c-41b7-b27c-80735933aed9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descripcion\": \"Médico deportólogo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/categorias-socio/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"categorias-socio",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear complemento plan",
+			"id": "c7d2a77a-aa49-4119-bde2-ae00523838ee",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descripcion\": \"Relajación ($ 300.000)\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/complementos-plan/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"complementos-plan",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear medio de pago",
+			"id": "da9beac0-3439-4563-9852-4c0aba8ab0f5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descripcion\": \"Crédito, Visa Débito o Mastercard Débito\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port-catalogo}}/medios-pago/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port-catalogo}}",
+					"path": [
+						"medios-pago",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
